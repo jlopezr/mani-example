@@ -31,11 +31,11 @@ tasks:
     desc: Print Hello World
     cmd: echo "Hello World"
 
-  git-status:
+  status:
     desc: show working tree status
     spec: custom
     target: all
-    cmd: git status -s
+    cmd: git -c color.status=always status -sb
 
   git-last-commit-msg:
     desc: show last commit
@@ -57,7 +57,7 @@ tasks:
       tags: [node]
     cmd: npm install
 
-  git-overview:
+  overview:
     desc: show branch, local and remote diffs, last commit and date
     spec: custom
     target: all
