@@ -1,0 +1,14 @@
+projects:
+  mani-test:
+    path: .
+  
+  comp1:
+    url: git@github.com:jlopezr/comp1.git
+  
+  comp2:
+    url: git@github.com:jlopezr/comp2.git
+  
+tasks:
+  hello:
+    desc: Print Hello World
+    cmd: echo "Hello World"
