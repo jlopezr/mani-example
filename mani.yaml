@@ -7,8 +7,62 @@ projects:
   
   comp2:
     url: git@github.com:jlopezr/comp2.git
-  
+ 
+specs:
+  custom:
+    output: table
+    parallel: true
+
+targets:
+  all:
+    all: true
+
+themes:
+  custom:
+    table:
+      options:
+        draw_border: true
+        separate_columns: true
+        separate_header: true
+        separate_rows: true
+
 tasks:
   hello:
     desc: Print Hello World
     cmd: echo "Hello World"
+
+  git-status:
+    desc: show working tree status
+    spec: custom
+    target: all
+    cmd: git status -s
+
+  git-last-commit-msg:
+    desc: show last commit
+    cmd: git log -1 --pretty=%B
+
+  git-last-commit-date:
+    desc: show last commit date
+    cmd: |
+      git log -1 --format="%cd (%cr)" -n 1 --date=format:"%d  %b %y" \
+      | sed 's/ //'
+
+  git-branch:
+    desc: show current git branch
+    cmd: git rev-parse --abbrev-ref HEAD
+
+  npm-install:
+    desc: run npm install in node repos
+    target:
+      tags: [node]
+    cmd: npm install
+
+  git-overview:
+    desc: show branch, local and remote diffs, last commit and date
+    spec: custom
+    target: all
+    theme: custom
+    commands:
+      - task: git-branch
+      - task: git-last-commit-msg
+      - task: git-last-commit-date
