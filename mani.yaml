@@ -27,15 +27,25 @@ themes:
         separate_rows: true
 
 tasks:
-  hello:
-    desc: Print Hello World
-    cmd: echo "Hello World"
+  pull:
+    desc: pulls repositories
+    cmd: git pull
+    spec: custom
+    target: all
+  
+  push:
+    desc: push repositories
+    cmd: git push
+    spec: custom
+    target: all
 
   status:
     desc: show working tree status
     spec: custom
     target: all
     cmd: git -c color.status=always status -sb
+
+
 
   git-last-commit-msg:
     desc: show last commit
